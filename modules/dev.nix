@@ -1,35 +1,7 @@
 { config, lib, pkgs, ... }:
 
 # Bluefin-style "batteries included" CLI tooling.
-# Keep this list in sync with the `cli` package in ../flake.nix.
+# Keep this in sync with `pkgs/base.nix` (imported below).
 {
-  environment.systemPackages = with pkgs; [
-    git
-    git-lfs
-    gh
-    just
-    direnv
-    gcc
-    binutils
-    gnumake
-    pkg-config
-    ripgrep
-    fd
-    bat
-    eza
-    fzf
-    jq
-    yq-go
-    htop
-    btop
-    tree
-    unzip
-    zip
-    p7zip
-    curl
-    wget
-    gnupg
-    tmux
-    tealdeer
-  ];
+  environment.systemPackages = import ../pkgs/base.nix { inherit pkgs; };
 }
