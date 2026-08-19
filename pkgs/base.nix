@@ -17,7 +17,7 @@ with pkgs; [
   fish
   fzf
   gh
-  git-delta
+  delta
   imagemagick
   jq
   lazygit
@@ -25,7 +25,7 @@ with pkgs; [
   nushell
   p7zip
   pipx
-  poppler_utils
+  poppler-utils
   resvg
   ripgrep
   starship
