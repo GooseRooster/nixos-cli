@@ -13,6 +13,9 @@ with pkgs; [
   eza
   fd
   gcc
+  go
+  python3
+  rustup
   ffmpeg-full
   fish
   fzf
