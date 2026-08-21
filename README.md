@@ -1,4 +1,4 @@
-# nixos-cli
+# nix-cli
 
 CLI / dev "batteries" (Bluefin-style) in their own flake so they can be reused
 on a NixOS system **and** on a foreign system (e.g. a dev container or WSL) via
@@ -26,19 +26,19 @@ The bundles are granular, so a dev container installs just the lean base set:
 
 ```sh
 # dev container — base CLI tools only
-nix profile install github:GooseRooster/nixos-cli#base
+nix profile install github:GooseRooster/nix-cli#base
 
 # WSL — base + WSL extras
-nix profile install github:GooseRooster/nixos-cli#base github:GooseRooster/nixos-cli#wsl
+nix profile install github:GooseRooster/nix-cli#base github:GooseRooster/nix-cli#wsl
 
 # full desktop host extras (visual/GUI, fonts, VS Code)
-nix profile install github:GooseRooster/nixos-cli#base-extra
+nix profile install github:GooseRooster/nix-cli#base-extra
 ```
 
 Or drop into a shell:
 
 ```sh
-nix develop github:GooseRooster/nixos-cli
+nix develop github:GooseRooster/nix-cli
 ```
 
 > `#base-extra` includes `vscode`, which is unfree. Install it with
@@ -74,8 +74,8 @@ nix flake update
 nix flake check
 
 # Install a bundle on a foreign system (dev container / WSL)
-nix profile install github:GooseRooster/nixos-cli#base
-nix profile install github:GooseRooster/nixos-cli#base github:GooseRooster/nixos-cli#wsl
+nix profile install github:GooseRooster/nix-cli#base
+nix profile install github:GooseRooster/nix-cli#base github:GooseRooster/nix-cli#wsl
 
 # Upgrade installed bundles (pin the profile to a fresh flake ref)
 nix profile upgrade '.*'
@@ -85,7 +85,7 @@ nix profile list
 nix profile remove <index>
 
 # Drop into a shell with the base bundle on PATH (no install)
-nix develop github:GooseRooster/nixos-cli
+nix develop github:GooseRooster/nix-cli
 
 # Find a package's nixpkgs attribute name before adding it to pkgs/*.nix
 nix search nixpkgs <name>

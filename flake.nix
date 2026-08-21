@@ -33,7 +33,7 @@
         in
         {
           # One-shot install on a foreign system (e.g. a dev container or WSL):
-          #   nix profile install github:GooseRooster/nixos-cli#base
+          #   nix profile install github:GooseRooster/nix-cli#base
           base = mkEnv pkgs "base" (import ./pkgs/base.nix { inherit pkgs; });
           base-extra = mkEnv pkgs "base-extra" (import ./pkgs/base-extra.nix { inherit pkgs; });
           wsl = mkEnv pkgs "wsl" (import ./pkgs/wsl.nix { inherit pkgs; });
