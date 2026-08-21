@@ -55,6 +55,10 @@ nix develop github:GooseRooster/nix-cli
 - `modules/ssh.nix` — openssh + persistent user ssh-agent
 - `modules/podman.nix` — rootless podman (+ docker compat) and quadlet guidance
 - `quadlets/` — example podman quadlet files
+- `devcontainer-templates/` — ready-to-copy `.devcontainer` scaffolding (base,
+  dotnet, ci-compose). Their personalization hooks install Nix + `#base` +
+  Home Manager dotfiles. Fetch without cloning:
+  `nix build --no-link --print-out-paths github:GooseRooster/nix-cli#devcontainer-templates`
 
 The `pkgs/*.nix` files are `{ pkgs }: [ ... ]` functions shared by both the
 flake's `buildEnv` packages and the NixOS modules, so the two never drift.

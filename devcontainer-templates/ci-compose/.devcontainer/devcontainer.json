@@ -1,0 +1,32 @@
+// Dev container that inherits an existing CI docker-compose.yml and layers dev-only
+// tweaks + the rootless-podman plumbing on top via docker-compose.override.yml.
+// Same conventions as the base/dotnet templates (local/ hook, nix-on-PATH, SSH
+// agent forwarding) adapted for the compose flavor — see README.md.
+//
+// NOTE: for compose-based dev containers, `runArgs` and `mounts` are NOT applied —
+// container-level settings (userns, network, volumes, env) live in the override
+// compose file. devcontainer.json keeps service / user / remoteEnv / lifecycle.
+{
+  "name": "ci-compose",
+  // TODO: point at your repo's actual CI docker-compose.yml (assumed at the repo
+  // root, one level up from .devcontainer/).
+  "dockerComposeFile": ["../docker-compose.yml", "docker-compose.override.yml"],
+  // TODO: the service to attach to (must match the CI compose + the override).
+  "service": "app",
+  // Must match the mount target in docker-compose.override.yml.
+  "workspaceFolder": "/workspace",
+  // TODO: a non-root, uid-1000 user that exists in your CI image. keep-id maps your
+  // host uid (1000) to this user so the workspace is writable. If the CI image only
+  // has root, add a uid-1000 user to it — running as root under keep-id leaves the
+  // bind-mounted workspace unwritable.
+  "remoteUser": "app",
+  "remoteEnv": {
+    // Nix on PATH so `nix profile install` tools (nushell, ...) resolve in every
+    // `exec`/terminal (nix is installed by the personal hook, not a Feature).
+    // per-user/1000 is the multi-user nix profile for the uid-1000 container user.
+    "PATH": "/nix/var/nix/profiles/default/bin:/nix/var/nix/profiles/per-user/1000/profile/bin:${containerEnv:PATH}"
+  },
+  // ⟨app⟩ add "forwardPorts": [ ... ] for your app's ports (or uncomment
+  // network_mode: host in the override).
+  "postCreateCommand": "bash .devcontainer/scripts/setup-repo.sh && bash .devcontainer/scripts/setup-local.sh"
+}

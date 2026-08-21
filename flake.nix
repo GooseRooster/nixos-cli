@@ -41,6 +41,13 @@
           # `cli` and `default` are the devcontainer-safe base bundle.
           cli = self.packages.${system}.base;
           default = self.packages.${system}.base;
+
+          # Dev container scaffolding (see devcontainer-templates/). Fetchable so
+          # `devcontainer-init` / CI can copy them without cloning the repo:
+          #   nix build --no-link --print-out-paths github:GooseRooster/nix-cli#devcontainer-templates
+          devcontainer-templates = pkgs.runCommand "devcontainer-templates" { } ''
+            cp -r ${./devcontainer-templates}/. "$out/"
+          '';
         });
 
       devShells = forAllSystems (system:
