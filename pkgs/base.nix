@@ -7,7 +7,6 @@
 with pkgs; [
   bat
   carapace
-  chezmoi
   dust
   dysk
   eza
@@ -45,5 +44,4 @@ with pkgs; [
   file
   shellcheck
   stylua
-  resterm
 ]

@@ -2,7 +2,7 @@
 
 CLI / dev "batteries" (Bluefin-style) in their own flake so they can be reused
 on a NixOS system **and** on a foreign system (e.g. a dev container or WSL) via
-plain Nix. Package lists migrated from the chezmoi `*.Brewfile`s.
+plain Nix.
 
 ## Consumers
 

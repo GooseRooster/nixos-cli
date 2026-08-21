@@ -18,5 +18,5 @@
   #     ../quadlets/example.container;
   #
   # Rootless *user* quadlets live in ~/.config/containers/systemd/
-  # and are typically managed with chezmoi.
+  # and are typically managed with chezmoi or Home Manager.
 }
